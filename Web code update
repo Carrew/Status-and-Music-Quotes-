@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Status & Music Quotes - By Carrew Sandi</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #2c3e50, #3498db);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      font-size: 1.2em;
+      color: #ddd;
+    }
+    #quoteBox {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      max-width: 500px;
+      font-size: 1.3em;
+      min-height: 100px;
+    }
+    button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #c0392b;
+    }
+    .category {
+      margin-top: 20px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Status & Music Quotes</h1>
+  <h2>Curated by Carrew Sandi 💬</h2>
+
+  <div id="quoteBox">Tap a category below 👇</div>
+
+  <div class="category">
+    <button onclick="showRandom('love')">❤️ Love</button>
+    <button onclick="showRandom('motivation')">💪 Motivation</button>
+    <button onclick="showRandom('hope')">🌅 Moving On</button>
+    <button onclick="showRandom('heartbreak')">💔 Heartbreak</button>
+  </div>
+
+  <footer>Made with ❤️ by Carrew Sandi · Facebook: Status & Music Quotes</footer>
+
+  <script>
+    const quotes = {
+      love: [
+        "‘Cause all of me loves all of you – John Legend",
+        "You're still the one I run to – Shania Twain",
+        "Nobody else matters when I'm with you – Drake",
+        "I got love for you, if you were born in the '90s – J. Cole",
+        "You give me feelings that I never felt before – The Weeknd",
+        // Add 45 more if you want
+      ],
+      motivation: [
+        "Don't stop when you're tired. Stop when you're done.",
+        "Push yourself, because no one else is going to do it for you.",
+        "Dream it. Wish it. Do it.",
+        "Stay hungry, stay foolish. – Steve Jobs",
+        "Hard times create strong people.",
+        // Add more here
+      ],
+      hope: [
+        "Every ending is a new beginning.",
+        "Letting go means growth.",
+        "The sun will rise, and we will try again.",
+        "Someday, everything will make perfect sense.",
+        "One day at a time.",
+        // Add more
+      ],
+      heartbreak: [
+        "I gave you my heart, and you broke it like it was nothing.",
+        "Somebody else is gonna love me better.",
+        "Tears dry, but scars remain.",
+        "I wish I never met you – just so it wouldn't hurt.",
+        "Even the strongest fall sometimes.",
+        // Add more
+      ]
+    };
+
+    function showRandom(category) {
+      const box = document.getElementById("quoteBox");
+      const list = quotes[category];
+      const quote = list[Math.floor(Math.random() * list.length)];
+      box.innerHTML = quote;
+
+      // Optional: change background color randomly
+      const colors = ['#2ecc71', '#9b59b6', '#f1c40f', '#1abc9c', '#e67e22', '#34495e'];
+      document.body.style.background = colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
