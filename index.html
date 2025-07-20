@@ -1,46 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Status and Music Quotes</title>
+  <meta charset="UTF-8">
+  <title>Status and Music Quotes by Carrew</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #222, #444);
-      color: #fff;
+      background: #f8f9fa;
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
+      color: #333;
     }
+
     h1 {
-      font-size: 2rem;
-      color: #f9c851;
+      color: #111;
+      margin-bottom: 10px;
     }
-    .quote-box {
-      margin-top: 20px;
-      padding: 20px;
-      background: #333;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #111;
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
     }
-    .quote {
-      font-size: 1.2rem;
-      font-style: italic;
+
+    #quote {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 20px;
+      line-height: 1.6;
     }
-    .credit {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #aaa;
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <h1>Status and Music Quotes 💬</h1>
-  <div class="quote-box">
-    <p class="quote">“Sometimes, heartbreak is the only thing that shows you you loved deeply.”</p>
-  </div>
-  <div class="credit">
-    Powered by Carrew Sandi ❤️
-  </div>
+
+  <h1>Status and Music Quotes</h1>
+  <p>By Carrew S. Sandi | Your daily dose of lyrical vibes & motivation 🎶</p>
+
+  <div id="quote">Tap a button to get started...</div>
+
+  <button onclick="newQuote()">🎵 New Random Quote</button>
+  <button onclick="quoteOfTheDay()">📅 Quote of the Day</button>
+
+  <footer>
+    &copy; 2025 Status & Music Quotes. Built with 💙 by Carrew.
+  </footer>
+
+  <script>
+    const quotes = [
+      "You broke me first – Tate McRae 💔",
+      "I was getting too used to being yours – Olivia Rodrigo",
+      "I know they said the grass is greener – SZA 🌱",
+      "You're my downfall, you're my muse – John Legend",
+      "I’m still standing, better than I ever did – Elton John 🕺",
+      "Started from the bottom now we here – Drake 💯",
+      "You live, you learn, you grow – Lauryn Hill 🌿",
+      "You only live once, that's the motto YOLO – Drake 🔁",
+      "Sometimes heartbreak teaches the best lessons 💔",
+      "One day you'll look back and smile again 😊",
+      "My silence is just another word for pain 🔕",
+      "You gave me a forever in a numbered days – TFIOS",
+      "Healing doesn’t mean the damage never existed 💡",
+      "New beginnings are often disguised as painful endings 🌅"
+    ];
+
+    function newQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").innerText = quotes[index];
+    }
+
+    function quoteOfTheDay() {
+      const today = new Date();
+      const index = today.getDate() % quotes.length;
+      document.getElementById("quote").innerText = "🌟 Quote of the Day:\n" + quotes[index];
+    }
+  </script>
+
 </body>
 </html>
