@@ -2,119 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Status and Music Quotes - by Carrew Sandi</title>
+  <title>Status and Music Quotes</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-    }
-    h1 {
-      color: #0ff;
-    }
-    .quote-box {
-      background: #222;
-      border-radius: 12px;
+      font-family: Arial, sans-serif;
       padding: 20px;
-      margin: 20px auto;
-      max-width: 600px;
-      font-size: 1.2rem;
-      box-shadow: 0 0 10px #0ff3;
+      background: #f0f0f0;
+      color: #333;
+      text-align: center;
     }
-    button {
-      background: #0ff;
-      color: #000;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
+    header {
+      background: #222;
+      color: white;
+      padding: 15px 0;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
       font-weight: bold;
-      margin: 10px;
-      cursor: pointer;
+      font-size: 18px;
     }
-    select {
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-      margin: 10px;
+    nav a:hover {
+      text-decoration: underline;
     }
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
+    main {
+      margin-top: 40px;
+    }
+    .category-btn {
+      display: inline-block;
+      background: #444;
+      color: white;
+      padding: 20px 40px;
+      margin: 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 22px;
+      transition: background 0.3s ease;
+    }
+    .category-btn:hover {
+      background: #666;
+    }
+    footer {
+      margin-top: 80px;
+      font-size: 14px;
+      color: gray;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Status and Music Quotes</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="love.html">Love</a>
+      <a href="motivational.html">Motivational</a>
+      <a href="heartbreak.html">Heartbreak</a>
+    </nav>
+  </header>
 
-  <h1>Status and Music Quotes</h1>
-  <p>Curated by Carrew Sandi 💡</p>
+  <main>
+    <h2>Choose Your Quote Category</h2>
+    <a class="category-btn" href="love.html">❤️ Love Quotes</a>
+    <a class="category-btn" href="motivational.html">💪 Motivational Quotes</a>
+    <a class="category-btn" href="heartbreak.html">💔 Heartbreak Quotes</a>
+  </main>
 
-  <select id="categorySelect">
-    <option value="all">All Categories</option>
-    <option value="love">Love</option>
-    <option value="heartbreak">Heartbreak</option>
-    <option value="motivation">Motivation</option>
-    <option value="movingon">Moving On</option>
-  </select>
-
-  <div class="quote-box" id="quoteBox">
-    Tap "Show Random Quote" to begin!
-  </div>
-
-  <button onclick="showQuote()">🎲 Show Random Quote</button>
-  <button onclick="shareQuote()">📤 Share Quote</button>
-
-  <div class="footer">
-    &copy; 2025 Carrew Sandi | Powered by GitHub Pages
-  </div>
-
-  <script>
-    const quotes = [
-      // LOVE
-      { text: "You're my end and my beginning - John Legend", category: "love" },
-      { text: "Cause all of me loves all of you - John Legend", category: "love" },
-      { text: "I found love where it wasn't supposed to be - Hozier", category: "love" },
-
-      // HEARTBREAK
-      { text: "It's hard to forget someone who gave you so much to remember.", category: "heartbreak" },
-      { text: "I needed you, but you didn't need me.", category: "heartbreak" },
-      { text: "You broke me in places I didn’t know could feel pain.", category: "heartbreak" },
-
-      // MOTIVATION
-      { text: "Work hard in silence, let success make the noise.", category: "motivation" },
-      { text: "Don’t watch the clock; do what it does. Keep going.", category: "motivation" },
-      { text: "Believe in yourself and all that you are.", category: "motivation" },
-
-      // MOVING ON
-      { text: "Sometimes the best revenge is to smile and move on.", category: "movingon" },
-      { text: "Let go. Heal. Grow.", category: "movingon" },
-      { text: "You don’t need closure. You need peace.", category: "movingon" },
-    ];
-
-    function showQuote() {
-      const category = document.getElementById("categorySelect").value;
-      const filteredQuotes = category === "all" ? quotes : quotes.filter(q => q.category === category);
-      const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
-      document.getElementById("quoteBox").innerText = filteredQuotes[randomIndex].text;
-    }
-
-    function shareQuote() {
-      const quote = document.getElementById("quoteBox").innerText;
-      const shareData = {
-        title: "Status and Music Quotes",
-        text: quote + " - via Carrew's site",
-        url: window.location.href
-      };
-      if (navigator.share) {
-        navigator.share(shareData);
-      } else {
-        alert("Sharing not supported on this device.");
-      }
-    }
-  </script>
-
+  <footer>
+    <p>Created by Carrew Sandi | Status and Music Quotes</p>
+  </footer>
 </body>
 </html>
