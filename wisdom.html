@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wisdom Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff7e6;
+    color: #665500;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(102, 85, 0, 0.2);
+  }
+  button, .share-btn {
+    background: #665500;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #443300;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Wisdom Quotes 🧠</h1>
+
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
+  </div>
+</div>
+
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random wisdom quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
+  </div>
+</div>
+
+<script>
+  const wisdomQuotes = [
+    "The only true wisdom is in knowing you know nothing. — Socrates",
+    "Turn your wounds into wisdom. — Oprah Winfrey",
+    "Knowing yourself is the beginning of all wisdom. — Aristotle",
+    "Wisdom is the reward you get for a lifetime of listening when you’d have preferred to talk. — Doug Larson",
+    "In seeking wisdom, the first step is silence, the second listening, the third remembering, the fourth practicing, the fifth teaching others. — Solomon Ibn Gabriol",
+    "The fool doth think he is wise, but the wise man knows himself to be a fool. — William Shakespeare",
+    "Patience is the companion of wisdom. — Saint Augustine",
+    "The art of being wise is knowing what to overlook. — William James",
+    "Do not take life too seriously. You will never get out of it alive. — Elbert Hubbard",
+    "Wisdom begins in wonder. — Socrates",
+    "It is the province of knowledge to speak, and it is the privilege of wisdom to listen. — Oliver Wendell Holmes Sr.",
+    "Wise men speak because they have something to say; fools because they have to say something. — Plato",
+    "Education is the best provision for old age. — Aristotle",
+    "Difficulties strengthen the mind, as labor does the body. — Seneca",
+    "Honest disagreement is often a good sign of progress. — Mahatma Gandhi",
+    "The simple things are also the most extraordinary things. — Paulo Coelho",
+    "Knowledge speaks, but wisdom listens. — Jimi Hendrix",
+    "It’s not what you look at that matters, it’s what you see. — Henry David Thoreau",
+    "With age comes wisdom. — Proverb",
+    "The only real wisdom is knowing when you know nothing. — Socrates",
+    "Wisdom is the power to put our time and our knowledge to the proper use. — Thomas J. Watson",
+    "Wisdom is knowing the right path to take. Integrity is taking it. — M.H. McKee",
+    "Sometimes it’s the smallest decisions that can change your life forever. — Keri Russell",
+    "To know when to be generous and when firm—that is wisdom. — Elbert Hubbard",
+    "The invariable mark of wisdom is to see the miraculous in the common. — Ralph Waldo Emerson",
+    "Do not seek to follow in the footsteps of the wise; seek what they sought. — Matsuo Basho",
+    "Knowledge without justice ought to be called cunning rather than wisdom. — Plato",
+    "A wise man will make more opportunities than he finds. — Francis Bacon",
+    "Wisdom is not a product of schooling but of the lifelong attempt to acquire it. — Albert Einstein",
+    "The greatest obstacle to discovery is not ignorance; it is the illusion of knowledge. — Daniel J. Boorstin"
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return wisdomQuotes[dayNumber % wisdomQuotes.length];
+  }
+
+  // Display Quote of the Day on page load
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * wisdomQuotes.length);
+    return wisdomQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share function helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  // Event listeners for Quote of the Day shares
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  // Event listeners for Random Quote shares
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
+</body>
+</html>
