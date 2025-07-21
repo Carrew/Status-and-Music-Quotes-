@@ -1,104 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Status and Music Quotes by Carrew</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Status and Music Quotes - by Carrew Sandi</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f8f9fa;
+      background: #111;
+      color: #fff;
       text-align: center;
-      padding: 40px 20px;
-      color: #333;
+      padding: 2rem;
     }
-
     h1 {
-      color: #111;
-      margin-bottom: 10px;
+      color: #0ff;
     }
-
-    p {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    #quote {
-      background: #fff;
-      border-radius: 15px;
-      padding: 25px;
+    .quote-box {
+      background: #222;
+      border-radius: 12px;
+      padding: 20px;
       margin: 20px auto;
       max-width: 600px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 20px;
-      line-height: 1.6;
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px #0ff3;
     }
-
     button {
-      padding: 12px 24px;
-      margin: 10px;
+      background: #0ff;
+      color: #000;
       border: none;
-      border-radius: 10px;
-      background: #007bff;
-      color: white;
-      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 10px;
       cursor: pointer;
-      transition: background 0.3s;
     }
-
-    button:hover {
-      background: #0056b3;
+    select {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      margin: 10px;
     }
-
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #888;
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
 
   <h1>Status and Music Quotes</h1>
-  <p>By Carrew S. Sandi | Your daily dose of lyrical vibes & motivation 🎶</p>
+  <p>Curated by Carrew Sandi 💡</p>
 
-  <div id="quote">Tap a button to get started...</div>
+  <select id="categorySelect">
+    <option value="all">All Categories</option>
+    <option value="love">Love</option>
+    <option value="heartbreak">Heartbreak</option>
+    <option value="motivation">Motivation</option>
+    <option value="movingon">Moving On</option>
+  </select>
 
-  <button onclick="newQuote()">🎵 New Random Quote</button>
-  <button onclick="quoteOfTheDay()">📅 Quote of the Day</button>
+  <div class="quote-box" id="quoteBox">
+    Tap "Show Random Quote" to begin!
+  </div>
 
-  <footer>
-    &copy; 2025 Status & Music Quotes. Built with 💙 by Carrew.
-  </footer>
+  <button onclick="showQuote()">🎲 Show Random Quote</button>
+  <button onclick="shareQuote()">📤 Share Quote</button>
+
+  <div class="footer">
+    &copy; 2025 Carrew Sandi | Powered by GitHub Pages
+  </div>
 
   <script>
     const quotes = [
-      "You broke me first – Tate McRae 💔",
-      "I was getting too used to being yours – Olivia Rodrigo",
-      "I know they said the grass is greener – SZA 🌱",
-      "You're my downfall, you're my muse – John Legend",
-      "I’m still standing, better than I ever did – Elton John 🕺",
-      "Started from the bottom now we here – Drake 💯",
-      "You live, you learn, you grow – Lauryn Hill 🌿",
-      "You only live once, that's the motto YOLO – Drake 🔁",
-      "Sometimes heartbreak teaches the best lessons 💔",
-      "One day you'll look back and smile again 😊",
-      "My silence is just another word for pain 🔕",
-      "You gave me a forever in a numbered days – TFIOS",
-      "Healing doesn’t mean the damage never existed 💡",
-      "New beginnings are often disguised as painful endings 🌅"
+      // LOVE
+      { text: "You're my end and my beginning - John Legend", category: "love" },
+      { text: "Cause all of me loves all of you - John Legend", category: "love" },
+      { text: "I found love where it wasn't supposed to be - Hozier", category: "love" },
+
+      // HEARTBREAK
+      { text: "It's hard to forget someone who gave you so much to remember.", category: "heartbreak" },
+      { text: "I needed you, but you didn't need me.", category: "heartbreak" },
+      { text: "You broke me in places I didn’t know could feel pain.", category: "heartbreak" },
+
+      // MOTIVATION
+      { text: "Work hard in silence, let success make the noise.", category: "motivation" },
+      { text: "Don’t watch the clock; do what it does. Keep going.", category: "motivation" },
+      { text: "Believe in yourself and all that you are.", category: "motivation" },
+
+      // MOVING ON
+      { text: "Sometimes the best revenge is to smile and move on.", category: "movingon" },
+      { text: "Let go. Heal. Grow.", category: "movingon" },
+      { text: "You don’t need closure. You need peace.", category: "movingon" },
     ];
 
-    function newQuote() {
-      const index = Math.floor(Math.random() * quotes.length);
-      document.getElementById("quote").innerText = quotes[index];
+    function showQuote() {
+      const category = document.getElementById("categorySelect").value;
+      const filteredQuotes = category === "all" ? quotes : quotes.filter(q => q.category === category);
+      const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
+      document.getElementById("quoteBox").innerText = filteredQuotes[randomIndex].text;
     }
 
-    function quoteOfTheDay() {
-      const today = new Date();
-      const index = today.getDate() % quotes.length;
-      document.getElementById("quote").innerText = "🌟 Quote of the Day:\n" + quotes[index];
+    function shareQuote() {
+      const quote = document.getElementById("quoteBox").innerText;
+      const shareData = {
+        title: "Status and Music Quotes",
+        text: quote + " - via Carrew's site",
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData);
+      } else {
+        alert("Sharing not supported on this device.");
+      }
     }
   </script>
 
