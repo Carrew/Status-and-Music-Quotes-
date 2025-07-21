@@ -1,82 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Love Quotes - Status and Music Quotes</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff0f5;
-      margin: 0;
-      padding: 0;
-      color: #222;
-    }
-    header {
-      background-color: #ff69b4;
-      padding: 1rem;
-      text-align: center;
-      color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .container {
-      padding: 1.5rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    .quote {
-      background-color: white;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-left: 5px solid #ff69b4;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .quote:hover {
-      background-color: #ffe0ec;
-    }
-    nav {
-      background-color: #fff0f5;
-      text-align: center;
-      padding: 1rem;
-    }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #ff1493;
-      font-weight: bold;
-    }
-    .back {
-      margin-top: 2rem;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Love Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe6f0;
+    color: #b30059;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(179,0,89,0.2);
+  }
+  button, .share-btn {
+    background: #b30059;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #d60073;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
 </head>
 <body>
-  <header>❤️ Love Quotes</header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="motivational.html">Motivational</a>
-    <a href="heartbreak.html">Heartbreak</a>
-  </nav>
+<h1>Love Quotes 💖</h1>
 
-  <div class="container">
-    <div class="quote">"You’re the one I’ve been waiting for my whole life."</div>
-    <div class="quote">"Let me love you like you’ve never been loved before."</div>
-    <div class="quote">"Your love is my favorite song on repeat."</div>
-    <div class="quote">"I still get butterflies every time I see you."</div>
-    <div class="quote">"Loving you feels like home."</div>
-    <div class="quote">"My heart beats to the rhythm of your smile."</div>
-    <div class="quote">"You're the melody in all my quiet moments."</div>
-    <div class="quote">"Forever doesn’t sound so scary with you."</div>
-    <div class="quote">"We’re poetry in a world full of noise."</div>
-    <div class="quote">"I found love, and it has your name."</div>
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
   </div>
+</div>
 
-  <div class="back">
-    <a href="index.html">⬅️ Back to Home</a>
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random love quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
   </div>
+</div>
+
+<script>
+  const loveQuotes = [
+    "You're my end and my beginning. — John Legend",
+    "Every moment with you is a dream come true. — Jason Mraz",
+    "I just want to hold you close. — The Beatles",
+    "You're the reason I believe in love. — Celine Dion",
+    "I’ll love you ‘til the stars go out. — Ed Sheeran",
+    "With you, I am home. — Lana Del Rey",
+    "You’re my heart’s only desire. — John Legend",
+    "You and me, we’re like a melody. — Bruno Mars",
+    "I fall in love a little more each day. — Shania Twain",
+    "Your touch is my favorite song. — Alicia Keys",
+    "I’m lost in the magic of you. — Taylor Swift",
+    "Our love story is my favorite. — Taylor Swift",
+    "You make my heart skip a beat. — Maroon 5",
+    "Forever and always, you’re mine. — Taylor Swift",
+    "I’m yours, no matter what. — Jason Mraz",
+    "You are my sunshine on the darkest days. — Rihanna",
+    "Our souls are intertwined forever. — Sam Smith",
+    "You’re my dream come true. — Beyoncé",
+    "I’d cross oceans just for you. — Ed Sheeran",
+    "Every kiss is a promise of forever. — Justin Bieber",
+    "You complete my heart. — Ariana Grande",
+    "Love like ours will never fade. — Shawn Mendes",
+    "I’m wrapped up in your love. — Whitney Houston",
+    "You’re my forever person. — Adele",
+    "Our love is written in the stars. — Coldplay",
+    "With you, life is beautiful. — Ed Sheeran",
+    "I’m addicted to your love. — The Weeknd",
+    "You light up my darkest nights. — Beyoncé",
+    "I choose you, and I’ll choose you over and over. — Sara Bareilles",
+    "Together, forever, you and me. — John Legend",
+    "I never want to stop making memories with you. — Pierre Jeanty",
+    "You’re the reason my heart beats. — Unknown",
+    "All that you are is all that I'll ever need. — Ed Sheeran",
+    "You are the best thing that’s ever been mine. — Taylor Swift",
+    "You’re the one I want to grow old with. — Unknown",
+    "I’m lost in your eyes. — Unknown",
+    "You make me better. — Unknown",
+    "You stole my heart, but I’ll let you keep it. — Unknown",
+    "With you, forever isn't long enough. — Unknown",
+    "You’re my favorite notification. — Unknown",
+    "Love is friendship set on fire. — Jeremy Taylor",
+    "You’re my happily ever after. — Unknown",
+    "Every love story is beautiful, but ours is my favorite. — Unknown",
+    "You had me at hello. — Jerry Maguire",
+    "Home is wherever I’m with you. — Edward Sharpe & The Magnetic Zeros",
+    "You’re my person. — Grey’s Anatomy",
+    "I want all of you, forever, you and me. — John Legend",
+    "You’re my sun on a cloudy day. — Unknown",
+    "I fell in love the way you fall asleep: slowly, and then all at once. — John Green",
+    "To love and be loved is to feel the sun from both sides. — David Viscott",
+    "I’m yours, no refunds. — Unknown"
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return loveQuotes[dayNumber % loveQuotes.length];
+  }
+
+  // Display Quote of the Day on page load
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * loveQuotes.length);
+    return loveQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share function helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    // Facebook sharer needs a URL, so we can share our page with quote in query param for demo:
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  // Event listeners for Quote of the Day shares
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  // Event listeners for Random Quote shares
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
 </body>
 </html>
