@@ -2,100 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Love Quotes | Status and Music Quotes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Quotes - Status and Music Quotes</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #ffe6e6;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+      color: #222;
     }
     header {
-      background: #cc0000;
-      color: white;
-      padding: 10px;
+      background-color: #ff69b4;
+      padding: 1rem;
       text-align: center;
-    }
-    nav a {
       color: white;
-      margin: 0 10px;
-      text-decoration: none;
+      font-size: 1.5rem;
       font-weight: bold;
     }
-    nav a:hover {
-      text-decoration: underline;
+    .container {
+      padding: 1.5rem;
+      max-width: 800px;
+      margin: auto;
     }
-    main {
-      max-width: 600px;
-      margin: 20px auto;
+    .quote {
+      background-color: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 5px solid #ff69b4;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .quote-box {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      line-height: 1.5;
-      font-size: 18px;
+    .quote:hover {
+      background-color: #ffe0ec;
     }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #cc0000;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background: #990000;
-    }
-    footer {
-      margin-top: 50px;
+    nav {
+      background-color: #fff0f5;
       text-align: center;
-      font-size: 14px;
-      color: gray;
+      padding: 1rem;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #ff1493;
+      font-weight: bold;
+    }
+    .back {
+      margin-top: 2rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Status and Music Quotes</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="love.html">Love</a>
-      <a href="motivational.html">Motivational</a>
-      <a href="heartbreak.html">Heartbreak</a>
-    </nav>
-  </header>
+  <header>❤️ Love Quotes</header>
 
-  <main>
-    <h2>Love Quotes ❤️</h2>
-    <div class="quote-box">
-      <p>“I just want to hold you close.” — The Beatles</p>
-      <p>“You’re the reason I believe in love.” — Celine Dion</p>
-      <p>“Every moment with you is a dream come true.” — Jason Mraz</p>
-      <p>“Your love is my guiding light.” — Beyoncé</p>
-      <p>“I’ll love you ’til the stars go out.” — Ed Sheeran</p>
-      <p>“With you, I am home.” — Lana Del Rey</p>
-      <p>“You’re my heart’s only desire.” — John Legend</p>
-      <p>“You and me, we’re like a melody.” — Bruno Mars</p>
-      <p>“I fall in love a little more each day.” — Shania Twain</p>
-      <p>“Your touch is my favorite song.” — Alicia Keys</p>
-    </div>
-    <button onclick="shareQuote()">Share</button>
-  </main>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="motivational.html">Motivational</a>
+    <a href="heartbreak.html">Heartbreak</a>
+  </nav>
 
-  <footer>
-    <p>Created by Carrew Sandi | Status and Music Quotes</p>
-  </footer>
+  <div class="container">
+    <div class="quote">"You’re the one I’ve been waiting for my whole life."</div>
+    <div class="quote">"Let me love you like you’ve never been loved before."</div>
+    <div class="quote">"Your love is my favorite song on repeat."</div>
+    <div class="quote">"I still get butterflies every time I see you."</div>
+    <div class="quote">"Loving you feels like home."</div>
+    <div class="quote">"My heart beats to the rhythm of your smile."</div>
+    <div class="quote">"You're the melody in all my quiet moments."</div>
+    <div class="quote">"Forever doesn’t sound so scary with you."</div>
+    <div class="quote">"We’re poetry in a world full of noise."</div>
+    <div class="quote">"I found love, and it has your name."</div>
+  </div>
 
-  <script>
-    function shareQuote() {
-      const text = "Check out these beautiful love quotes 💕:\nhttps://carrew.github.io/Status-and-Music-Quotes-/love.html";
-      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
-    }
-  </script>
+  <div class="back">
+    <a href="index.html">⬅️ Back to Home</a>
+  </div>
 </body>
 </html>
