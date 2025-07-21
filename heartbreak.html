@@ -1,82 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Heartbreak Quotes - Status and Music Quotes</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background-color: #8b0000;
-      padding: 1rem;
-      text-align: center;
-      color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .container {
-      padding: 1.5rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    .quote {
-      background-color: white;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-left: 5px solid #8b0000;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .quote:hover {
-      background-color: #f8d7da;
-    }
-    nav {
-      background-color: #f0f0f0;
-      text-align: center;
-      padding: 1rem;
-    }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #8b0000;
-      font-weight: bold;
-    }
-    .back {
-      margin-top: 2rem;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heartbreak & Moving On Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe6e6;
+    color: #b00020;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
+  }
+  button, .share-btn {
+    background: #b00020;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #7f0014;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
 </head>
 <body>
-  <header>💔 Heartbreak Quotes</header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="motivational.html">Motivational</a>
-    <a href="love.html">Love</a>
-  </nav>
+<h1>Heartbreak & Moving On Quotes 💔</h1>
 
-  <div class="container">
-    <div class="quote">"It hurts because it mattered."</div>
-    <div class="quote">"Some goodbyes are blessings in disguise."</div>
-    <div class="quote">"You broke me, but I’m still breathing."</div>
-    <div class="quote">"We were a chapter, not the whole story."</div>
-    <div class="quote">"Healing doesn’t mean forgetting."</div>
-    <div class="quote">"Your silence said everything."</div>
-    <div class="quote">"Sometimes the person you want most is the one you’re best without."</div>
-    <div class="quote">"Letting go was the hardest peace I ever made."</div>
-    <div class="quote">"I cried for the memories, not for you."</div>
-    <div class="quote">"We loved in verses, but ended in a full stop."</div>
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
   </div>
+</div>
 
-  <div class="back">
-    <a href="index.html">⬅️ Back to Home</a>
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random heartbreak quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
   </div>
+</div>
+
+<script>
+  const heartbreakQuotes = [
+    "I’m scared to be lonely, but I’m still waiting on you. — Olivia Rodrigo",
+    "You’re the reason I’m dancing through the fire. — Halsey",
+    "Love is a losing game. — Adele",
+    "I’m falling in love with the way you let me feel. — Khalid",
+    "I gave you my heart, but you gave it away. — Billie Eilish",
+    "I never meant to break your heart. — Lewis Capaldi",
+    "I’m caught in a wave of emotions. — Lorde",
+    "You left me with a broken melody. — James Bay",
+    "I keep holding on, but you’re slipping away. — Sam Smith",
+    "Your love is a drug I can’t quit. — Dua Lipa",
+    "Lost without you, can’t you see? — SZA",
+    "I’m waiting for you to come back home. — The Weeknd",
+    "I gave you everything, but it wasn’t enough. — Selena Gomez",
+    "You’re my everything, but you’re gone. — Shawn Mendes",
+    "Love hurts, but I keep falling. — Camila Cabello",
+    "I’m drowning in memories of you. — Julia Michaels",
+    "I don’t wanna be the one to break. — Alessia Cara",
+    "You’re the fire I can’t put out. — Normani",
+    "I’m chasing shadows of what we had. — H.E.R.",
+    "I’ll love you ’til the end of time. — Justin Bieber"
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return heartbreakQuotes[dayNumber % heartbreakQuotes.length];
+  }
+
+  // Display Quote of the Day on page load
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * heartbreakQuotes.length);
+    return heartbreakQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share function helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  // Event listeners for Quote of the Day shares
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  // Event listeners for Random Quote shares
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
 </body>
 </html>
