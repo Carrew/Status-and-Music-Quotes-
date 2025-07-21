@@ -59,16 +59,14 @@
 <body>
 
 <h1>Welcome to Carrew's Status and Music Quotes</h1>
-<p>Your daily dose of love, motivation, heartbreak, and more.</p>
+<p>Your daily dose of love, heartbreak, hope, self-love, and more.</p>
 
 <nav>
   <a href="love.html">Love</a>
   <a href="heartbreak.html">Heartbreak</a>
-  <a href="motivation.html">Motivation</a>
   <a href="hope.html">Hope & Moving On</a>
   <a href="self-love.html">Self Love</a>
-  <a href="toxic.html">Toxic</a>
-  <!-- Add more categories as you build them -->
+  <!-- Removed Toxic and Motivation links -->
 </nav>
 
 <div class="quote-box">
@@ -83,36 +81,28 @@
 </div>
 
 <script>
-  // Combined quotes from all categories (just a sample, expand with all your quotes)
+  // Quotes from current categories only
   const allQuotes = [
-    // Love quotes (sample)
+    // Love
     "I just want to hold you close. — The Beatles",
     "You’re the reason I believe in love. — Celine Dion",
-    // Heartbreak quotes (sample)
+    // Heartbreak
     "I’m scared to be lonely, but I’m still waiting on you. — Olivia Rodrigo",
     "You gave it away. — Billie Eilish",
-    // Motivation quotes (sample)
-    "The best way to get started is to quit talking and begin doing. — Walt Disney",
-    "Don’t stop until you’re proud. — Unknown",
-    // Hope quotes (sample)
+    // Hope & Moving On
     "Keep your eyes on the stars and your feet on the ground. — Theodore Roosevelt",
     "I’ll rise up, rise like the day. — Andra Day",
-    // Self Love quotes (sample)
+    // Self Love
     "You yourself, as much as anybody in the entire universe, deserve your love and affection. — Buddha",
-    "Be your own kind of beautiful. — Unknown",
-    // Toxic quotes (sample)
-    "Some people create their own storms and then get mad when it rains. — Unknown",
-    "Toxic relationships will kill your spirit slowly. — Unknown",
+    "Be your own kind of beautiful. — Unknown"
   ];
 
-  // Quote of the Day logic
   function getQuoteOfDay() {
     const today = new Date();
     const dayNumber = today.getDate() + today.getMonth() * 31;
     return allQuotes[dayNumber % allQuotes.length];
   }
 
-  // Random quote logic
   function getRandomQuote() {
     const randomIndex = Math.floor(Math.random() * allQuotes.length);
     return allQuotes[randomIndex];
