@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Motivational Quotes | Status and Music Quotes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #e6f7ff;
+      color: #333;
+    }
+    header {
+      background: #007acc;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .quote-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      line-height: 1.5;
+      font-size: 18px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #005f99;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Status and Music Quotes</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="love.html">Love</a>
+      <a href="motivational.html">Motivational</a>
+      <a href="heartbreak.html">Heartbreak</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Motivational Quotes 💪</h2>
+    <div class="quote-box">
+      <p>“Push yourself, no one else is going to do it for you.”</p>
+      <p>“Every day may not be good… but there’s something good in every day.”</p>
+      <p>“Don’t stop until you’re proud.”</p>
+      <p>“Success is built on consistency.”</p>
+      <p>“Believe you can and you're halfway there.” — Theodore Roosevelt</p>
+      <p>“Dream it. Wish it. Do it.”</p>
+      <p>“Wake up with determination, go to bed with satisfaction.”</p>
+      <p>“The harder you work, the luckier you get.”</p>
+    </div>
+    <button onclick="shareQuote()">Share</button>
+  </main>
+
+  <footer>
+    <p>Created by Carrew Sandi | Status and Music Quotes</p>
+  </footer>
+
+  <script>
+    function shareQuote() {
+      const text = "Need some motivation? Check these out 🔥:\nhttps://carrew.github.io/Status-and-Music-Quotes-/motivational.html";
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    }
+  </script>
+</body>
+</html>
