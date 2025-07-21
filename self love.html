@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Self-Love Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe6f0;
+    color: #99004d;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(153, 0, 77, 0.2);
+  }
+  button, .share-btn {
+    background: #99004d;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #660033;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Self-Love Quotes 💖</h1>
+
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
+  </div>
+</div>
+
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random self-love quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
+  </div>
+</div>
+
+<script>
+  const selfLoveQuotes = [
+    "Love yourself first and everything else falls into line. — Lucille Ball",
+    "You yourself, as much as anybody in the entire universe, deserve your love and affection. — Buddha",
+    "Owning our story and loving ourselves through that process is the bravest thing that we’ll ever do. — Brené Brown",
+    "Be proud of who you are, and not ashamed of how someone else sees you. — Unknown",
+    "You are enough just as you are. — Meghan Markle",
+    "Talk to yourself like you would to someone you love. — Brené Brown",
+    "To fall in love with yourself is the first secret to happiness. — Robert Morely",
+    "Self-love is not selfish; you cannot truly love another until you know how to love yourself. — Unknown",
+    "You alone are enough. You have nothing to prove to anyone. — Maya Angelou",
+    "Your relationship with yourself sets the tone for every other relationship you have. — Robert Holden",
+    "Be your own biggest fan. — Unknown",
+    "Self-care is how you take your power back. — Lalah Delia",
+    "Respect yourself enough to say 'I deserve peace.' — Unknown",
+    "Love who you are, embrace who you are, and live unapologetically. — Unknown",
+    "You were born to be real, not perfect. — Unknown",
+    "When you recover or discover something that nourishes your soul and brings joy, care enough about yourself to make room for it in your life. — Jean Shinoda Bolen",
+    "Celebrate your own existence with love. — Unknown",
+    "The more you love yourself, the less nonsense you’ll tolerate. — Unknown",
+    "Be yourself; everyone else is already taken. — Oscar Wilde",
+    "You are worthy of all the good things life has to offer. — Unknown",
+    "Believe in your infinite potential. — Unknown",
+    "You don’t need validation from others to know your worth. — Unknown",
+    "Be gentle with yourself, you’re doing the best you can. — Unknown",
+    "Your value doesn’t decrease based on someone’s inability to see your worth. — Unknown",
+    "Treat yourself as if you are someone you love. — Unknown",
+    "Self-love is the greatest middle finger of all time. — Unknown",
+    "Love yourself enough to set boundaries. — Anna Taylor",
+    "Be your own reason to smile. — Unknown",
+    "You are beautiful, worthy, and deserving of love. — Unknown",
+    "Your soul knows the way. Trust it. — Unknown"
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return selfLoveQuotes[dayNumber % selfLoveQuotes.length];
+  }
+
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * selfLoveQuotes.length);
+    return selfLoveQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
+</body>
+</html>
