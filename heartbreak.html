@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heartbreak Quotes | Status and Music Quotes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #ffe6f0;
+      color: #333;
+    }
+    header {
+      background: #cc0066;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .quote-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      line-height: 1.5;
+      font-size: 18px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #cc0066;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #990047;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Status and Music Quotes</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="love.html">Love</a>
+      <a href="motivational.html">Motivational</a>
+      <a href="heartbreak.html">Heartbreak</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Heartbreak Quotes 💔</h2>
+    <div class="quote-box">
+      <p>“I’m scared to be lonely, but I’m still waiting on you.” — Olivia Rodrigo</p>
+      <p>“I gave you my heart, but you gave it away.” — Billie Eilish</p>
+      <p>“I never meant to break your heart.” — Lewis Capaldi</p>
+      <p>“I keep holding on, but you’re slipping away.” — Sam Smith</p>
+      <p>“Love hurts, but I keep falling.” — Camila Cabello</p>
+      <p>“I’m drowning in memories of you.” — Julia Michaels</p>
+      <p>“You left me with a broken melody.” — James Bay</p>
+      <p>“I don’t wanna be the one to break.” — Alessia Cara</p>
+    </div>
+    <button onclick="shareQuote()">Share</button>
+  </main>
+
+  <footer>
+    <p>Created by Carrew Sandi | Status and Music Quotes</p>
+  </footer>
+
+  <script>
+    function shareQuote() {
+      const text = "Feeling heartbroken? These quotes might help 💔:\nhttps://carrew.github.io/Status-and-Music-Quotes-/heartbreak.html";
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    }
+  </script>
+</body>
+</html>
