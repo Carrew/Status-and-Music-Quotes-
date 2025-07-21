@@ -1,75 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Status and Music Quotes</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f0f0f0;
-      color: #333;
-      text-align: center;
-    }
-    header {
-      background: #222;
-      color: white;
-      padding: 15px 0;
-    }
-    nav a {
-      margin: 0 15px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      margin-top: 40px;
-    }
-    .category-btn {
-      display: inline-block;
-      background: #444;
-      color: white;
-      padding: 20px 40px;
-      margin: 15px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 22px;
-      transition: background 0.3s ease;
-    }
-    .category-btn:hover {
-      background: #666;
-    }
-    footer {
-      margin-top: 80px;
-      font-size: 14px;
-      color: gray;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carrew's Status and Music Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e0f7fa;
+    color: #004d40;
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  nav {
+    margin: 1.5rem 0;
+  }
+  nav a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    background: #004d40;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  nav a:hover {
+    background: #00796b;
+  }
+  .quote-box {
+    background: white;
+    max-width: 700px;
+    margin: 1rem auto;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 12px rgba(0,77,64,0.2);
+  }
+  button {
+    background: #004d40;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.3rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  button:hover {
+    background: #00796b;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Status and Music Quotes</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="love.html">Love</a>
-      <a href="motivational.html">Motivational</a>
-      <a href="heartbreak.html">Heartbreak</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Choose Your Quote Category</h2>
-    <a class="category-btn" href="love.html">❤️ Love Quotes</a>
-    <a class="category-btn" href="motivational.html">💪 Motivational Quotes</a>
-    <a class="category-btn" href="heartbreak.html">💔 Heartbreak Quotes</a>
-  </main>
+<h1>Welcome to Carrew's Status and Music Quotes</h1>
+<p>Your daily dose of love, motivation, heartbreak, and more.</p>
 
-  <footer>
-    <p>Created by Carrew Sandi | Status and Music Quotes</p>
-  </footer>
+<nav>
+  <a href="love.html">Love</a>
+  <a href="heartbreak.html">Heartbreak</a>
+  <a href="motivation.html">Motivation</a>
+  <a href="hope.html">Hope & Moving On</a>
+  <a href="self-love.html">Self Love</a>
+  <a href="toxic.html">Toxic</a>
+  <!-- Add more categories as you build them -->
+</nav>
+
+<div class="quote-box">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+</div>
+
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+</div>
+
+<script>
+  // Combined quotes from all categories (just a sample, expand with all your quotes)
+  const allQuotes = [
+    // Love quotes (sample)
+    "I just want to hold you close. — The Beatles",
+    "You’re the reason I believe in love. — Celine Dion",
+    // Heartbreak quotes (sample)
+    "I’m scared to be lonely, but I’m still waiting on you. — Olivia Rodrigo",
+    "You gave it away. — Billie Eilish",
+    // Motivation quotes (sample)
+    "The best way to get started is to quit talking and begin doing. — Walt Disney",
+    "Don’t stop until you’re proud. — Unknown",
+    // Hope quotes (sample)
+    "Keep your eyes on the stars and your feet on the ground. — Theodore Roosevelt",
+    "I’ll rise up, rise like the day. — Andra Day",
+    // Self Love quotes (sample)
+    "You yourself, as much as anybody in the entire universe, deserve your love and affection. — Buddha",
+    "Be your own kind of beautiful. — Unknown",
+    // Toxic quotes (sample)
+    "Some people create their own storms and then get mad when it rains. — Unknown",
+    "Toxic relationships will kill your spirit slowly. — Unknown",
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return allQuotes[dayNumber % allQuotes.length];
+  }
+
+  // Random quote logic
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * allQuotes.length);
+    return allQuotes[randomIndex];
+  }
+
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+</script>
+
 </body>
 </html>
