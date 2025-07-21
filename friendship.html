@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Friendship Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e6f0ff;
+    color: #004080;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 64, 128, 0.2);
+  }
+  button, .share-btn {
+    background: #004080;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #00264d;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Friendship Quotes 🤝</h1>
+
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
+  </div>
+</div>
+
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random friendship quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
+  </div>
+</div>
+
+<script>
+  const friendshipQuotes = [
+    "A real friend is one who walks in when the rest of the world walks out. — Walter Winchell",
+    "Friendship is born at that moment when one person says to another, ‘What! You too?’ — C.S. Lewis",
+    "Friends are the family we choose for ourselves. — Edna Buchanan",
+    "True friendship comes when the silence between two people is comfortable. — David Tyson",
+    "A single rose can be my garden… a single friend, my world. — Leo Buscaglia",
+    "Good friends are like stars. You don’t always see them, but you know they’re always there. — Unknown",
+    "Friendship improves happiness and abates misery, by the doubling of our joy and the dividing of our grief. — Marcus Tullius Cicero",
+    "A friend is someone who knows all about you and still loves you. — Elbert Hubbard",
+    "Friends show their love in times of trouble, not in happiness. — Euripides",
+    "There are no strangers here; Only friends you haven’t yet met. — William Butler Yeats",
+    "Friendship isn’t about whom you have known the longest… it’s about who came and never left your side. — Unknown",
+    "Walking with a friend in the dark is better than walking alone in the light. — Helen Keller",
+    "Friends are like walls. Sometimes you lean on them, and sometimes it’s good just knowing they’re there. — Unknown",
+    "A friend may be waiting behind a stranger’s face. — Maya Angelou",
+    "Friendship multiplies the good of life and divides the evil. — Baltasar Gracian",
+    "Friends are the siblings God never gave us. — Mencius",
+    "True friends are like diamonds — bright, beautiful, valuable, and always in style. — Nicole Richie",
+    "A true friend is someone who thinks that you are a good egg even though he knows that you are slightly cracked. — Bernard Meltzer",
+    "Best friends can turn a horrible day into one of the best days of your life. — Nathanael Richmond",
+    "Friends don’t let friends do silly things alone. — Unknown",
+    "Friendship is the only cement that will ever hold the world together. — Woodrow Wilson",
+    "Friends are the sunshine of life. — John Hay",
+    "In the cookie of life, friends are the chocolate chips. — Salman Rushdie",
+    "Friendship is the golden thread that ties the heart of all the world. — John Evelyn",
+    "True friends are always together in spirit. — L.M. Montgomery",
+    "The language of friendship is not words but meanings. — Henry David Thoreau",
+    "Friendship is the comfort of knowing that even when you feel alone, you aren’t. — Unknown",
+    "Friends are those rare people who ask how we are and then wait to hear the answer. — Ed Cunningham",
+    "True friendship is a plant of slow growth. — George Washington",
+    "Life is partly what we make it, and partly what it is made by the friends we choose. — Tennessee Williams"
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return friendshipQuotes[dayNumber % friendshipQuotes.length];
+  }
+
+  // Display Quote of the Day on page load
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * friendshipQuotes.length);
+    return friendshipQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share function helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  // Event listeners for Quote of the Day shares
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  // Event listeners for Random Quote shares
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
+</body>
+</html>
