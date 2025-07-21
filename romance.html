@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Romantic Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe6f0;
+    color: #d6336c;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(214, 51, 108, 0.2);
+  }
+  button, .share-btn {
+    background: #d6336c;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #9e254d;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Romantic Quotes 💖</h1>
+
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
+  </div>
+</div>
+
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random romantic quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
+  </div>
+</div>
+
+<script>
+  const romanticQuotes = [
+    "I just want to hold you close. — The Beatles",
+    "You’re the reason I believe in love. — Celine Dion",
+    "Every moment with you is a dream come true. — Jason Mraz",
+    "Your love is my guiding light. — Beyoncé",
+    "I’ll love you ‘til the stars go out. — Ed Sheeran",
+    "With you, I am home. — Lana Del Rey",
+    "You’re my heart’s only desire. — John Legend",
+    "You and me, we’re like a melody. — Bruno Mars",
+    "I fall in love a little more each day. — Shania Twain",
+    "Your touch is my favorite song. — Alicia Keys",
+    "I’m lost in the magic of you. — Taylor Swift",
+    "Our love story is my favorite. — Taylor Swift",
+    "You make my heart skip a beat. — Maroon 5",
+    "Forever and always, you’re mine. — Taylor Swift",
+    "I’m yours, no matter what. — Jason Mraz",
+    "You are my sunshine on the darkest days. — Rihanna",
+    "Our souls are intertwined forever. — Sam Smith",
+    "You’re my dream come true. — Beyoncé",
+    "I’d cross oceans just for you. — Ed Sheeran",
+    "Every kiss is a promise of forever. — Justin Bieber",
+    "You complete my heart. — Ariana Grande",
+    "Love like ours will never fade. — Shawn Mendes",
+    "I’m wrapped up in your love. — Whitney Houston",
+    "You’re my forever person. — Adele",
+    "Our love is written in the stars. — Coldplay",
+    "With you, life is beautiful. — Ed Sheeran",
+    "I’m addicted to your love. — The Weeknd",
+    "You light up my darkest nights. — Beyoncé",
+    "I choose you, and I’ll choose you over and over. — Sara Bareilles",
+    "Together, forever, you and me. — John Legend"
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return romanticQuotes[dayNumber % romanticQuotes.length];
+  }
+
+  // Display Quote of the Day on page load
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * romanticQuotes.length);
+    return romanticQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share function helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  // Event listeners for Quote of the Day shares
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  // Event listeners for Random Quote shares
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
+</body>
+</html>
