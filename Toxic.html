@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Toxic Quotes - Carrew's Quotes</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8e6e0;
+    color: #a83232;
+    text-align: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.2rem;
+  }
+  .quote-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(168, 50, 50, 0.2);
+  }
+  button, .share-btn {
+    background: #a83232;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  button:hover, .share-btn:hover {
+    background: #7a2323;
+  }
+  .share-buttons {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Toxic Quotes 💔</h1>
+
+<div class="quote-box" id="quoteOfDayBox">
+  <h2>Quote of the Day</h2>
+  <p id="quoteOfDay">Loading...</p>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsApp">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebook">Share Facebook</button>
+    <button class="share-btn" id="copyQuote">Copy Quote</button>
+  </div>
+</div>
+
+<div class="quote-box">
+  <h2>Random Quote</h2>
+  <p id="randomQuote">Click the button to see a random toxic quote!</p>
+  <button id="randomBtn">New Random Quote</button>
+  <div class="share-buttons">
+    <button class="share-btn" id="shareWhatsAppRnd">Share WhatsApp</button>
+    <button class="share-btn" id="shareFacebookRnd">Share Facebook</button>
+    <button class="share-btn" id="copyQuoteRnd">Copy Quote</button>
+  </div>
+</div>
+
+<script>
+  const toxicQuotes = [
+    "Some people create their own storms and then get mad when it rains.",
+    "Toxic relationships will kill your spirit slowly.",
+    "You deserve to be with someone who makes you happy, not stressed.",
+    "Don’t let toxic people rent space in your head. Raise the rent and kick them out.",
+    "Not everyone deserves a seat at your table.",
+    "Toxicity is when someone’s energy drains you instead of energizing you.",
+    "Some of the most poisonous people you’ll meet are smiling the brightest.",
+    "Cutting off toxic people isn’t being mean, it’s being smart.",
+    "Toxic relationships teach you what you don’t want.",
+    "Your peace is more important than proving a point.",
+    "Let go of toxic people and watch your world change.",
+    "Don’t sacrifice yourself to keep toxic people comfortable.",
+    "Toxicity is a slow poison to your happiness.",
+    "Recognize the signs before you get too deep.",
+    "Love yourself enough to walk away from toxic ties.",
+    "Don’t confuse kindness with weakness.",
+    "Protect your energy like your life depends on it — because it does.",
+    "Toxic people are experts at creating drama and chaos.",
+    "Your mental health matters more than their approval.",
+    "Boundaries are your best defense against toxicity.",
+    "Stay away from people who make you feel less than you are.",
+    "Sometimes you have to accept that some people can’t change.",
+    "You can’t heal in the same environment that made you sick.",
+    "Focus on the people who make you better, not bitter.",
+    "You can’t pour from an empty cup; protect yourself first.",
+    "Cutting off toxic ties is a form of self-love.",
+    "Letting go doesn’t mean you lost; it means you chose peace.",
+    "Not all battles are worth fighting, especially with toxic people.",
+    "Surround yourself with positive vibes only.",
+    "Toxic people don’t deserve your energy or time."
+  ];
+
+  // Quote of the Day logic
+  function getQuoteOfDay() {
+    const today = new Date();
+    const dayNumber = today.getDate() + today.getMonth() * 31;
+    return toxicQuotes[dayNumber % toxicQuotes.length];
+  }
+
+  const quoteOfDayElement = document.getElementById('quoteOfDay');
+  quoteOfDayElement.textContent = getQuoteOfDay();
+
+  // Random Quote logic
+  const randomQuoteElement = document.getElementById('randomQuote');
+  const randomBtn = document.getElementById('randomBtn');
+
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * toxicQuotes.length);
+    return toxicQuotes[randomIndex];
+  }
+
+  randomBtn.addEventListener('click', () => {
+    randomQuoteElement.textContent = getRandomQuote();
+  });
+
+  // Share helpers
+  function shareOnWhatsApp(text) {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+
+  function shareOnFacebook(text) {
+    const pageUrl = window.location.href.split('?')[0];
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Quote copied to clipboard!');
+    }, () => {
+      alert('Failed to copy quote.');
+    });
+  }
+
+  document.getElementById('shareWhatsApp').addEventListener('click', () => {
+    shareOnWhatsApp(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareFacebook').addEventListener('click', () => {
+    shareOnFacebook(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('copyQuote').addEventListener('click', () => {
+    copyToClipboard(quoteOfDayElement.textContent);
+  });
+
+  document.getElementById('shareWhatsAppRnd').addEventListener('click', () => {
+    shareOnWhatsApp(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('shareFacebookRnd').addEventListener('click', () => {
+    shareOnFacebook(randomQuoteElement.textContent);
+  });
+
+  document.getElementById('copyQuoteRnd').addEventListener('click', () => {
+    copyToClipboard(randomQuoteElement.textContent);
+  });
+</script>
+
+</body>
+</html>
